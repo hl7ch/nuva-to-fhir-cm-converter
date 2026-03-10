@@ -8,13 +8,13 @@ import java.util.List;
 
 import org.springframework.core.io.InputStreamResource;
 
-import ch.hl7.vacd.domain.SwissmedicToNuva;
+import ch.hl7.vacd.domain.CodeToNuva;
 
 /**
  * 
  */
 public interface SwissmedicToNuvaParser {
 
-	public List<SwissmedicToNuva> parseCsv(InputStreamResource resource) throws IOException;
+	public List<CodeToNuva> parseCsv(InputStreamResource resource) throws IOException;
 
 }

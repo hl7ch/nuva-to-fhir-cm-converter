@@ -15,7 +15,7 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 import ch.hl7.vacd.components.NuvaToSwissmedicParser;
-import ch.hl7.vacd.domain.NuvaToSwissmedic;
+import ch.hl7.vacd.domain.NuvaToCode;
 
 /**
  * 
@@ -24,10 +24,10 @@ import ch.hl7.vacd.domain.NuvaToSwissmedic;
 public class NuvaToSwissmedicParserImpl implements NuvaToSwissmedicParser {
 
 	@Override
-	public List<NuvaToSwissmedic> parseCsv(InputStreamResource resource) throws IOException {
+	public List<NuvaToCode> parseCsv(InputStreamResource resource) throws IOException {
 		try (Reader reader = new InputStreamReader(resource.getInputStream())) {
-			CsvToBean<NuvaToSwissmedic> csvToBean = new CsvToBeanBuilder<NuvaToSwissmedic>(reader)//
-					.withType(NuvaToSwissmedic.class)//
+			CsvToBean<NuvaToCode> csvToBean = new CsvToBeanBuilder<NuvaToCode>(reader)//
+					.withType(NuvaToCode.class)//
 					.withIgnoreLeadingWhiteSpace(true)//
 					.withSkipLines(1)//
 					.build();

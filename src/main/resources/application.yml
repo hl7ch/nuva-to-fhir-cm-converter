@@ -1,0 +1,11 @@
+spring.application.name: nuva-to-fhir-cm-converter
+
+application:
+  swissmedic:
+    base-url: https://raw.githubusercontent.com/IVC-NUVA/NUVA/refs/heads/main/Release/Alignments/SWISSMEDIC
+    tonuva: ${application.swissmedic.base-url}/SWISSMEDIC2nuva.csv
+    fromnuva: ${application.swissmedic.base-url}/nuva2SWISSMEDIC.csv
+  swisslegacy:
+    base-url: https://raw.githubusercontent.com/IVC-NUVA/NUVA/refs/heads/main/Release/Alignments/SWISSLEGACY
+    tonuva: ${application.swisslegacy.base-url}/SWISSLEGACY2nuva.csv
+    fromnuva: ${application.swisslegacy.base-url}/nuva2SWISSLEGACY.csv

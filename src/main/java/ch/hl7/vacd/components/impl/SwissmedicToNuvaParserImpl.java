@@ -14,7 +14,7 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 import ch.hl7.vacd.components.SwissmedicToNuvaParser;
-import ch.hl7.vacd.domain.SwissmedicToNuva;
+import ch.hl7.vacd.domain.CodeToNuva;
 
 /**
  * 
@@ -23,10 +23,10 @@ import ch.hl7.vacd.domain.SwissmedicToNuva;
 public class SwissmedicToNuvaParserImpl implements SwissmedicToNuvaParser {
 
 	@Override
-	public List<SwissmedicToNuva> parseCsv(InputStreamResource resource) throws IOException {
+	public List<CodeToNuva> parseCsv(InputStreamResource resource) throws IOException {
 		try (Reader reader = new InputStreamReader(resource.getInputStream())) {
-			CsvToBean<SwissmedicToNuva> csvToBean = new CsvToBeanBuilder<SwissmedicToNuva>(reader)//
-					.withType(SwissmedicToNuva.class)//
+			CsvToBean<CodeToNuva> csvToBean = new CsvToBeanBuilder<CodeToNuva>(reader)//
+					.withType(CodeToNuva.class)//
 					.withIgnoreLeadingWhiteSpace(true)//
 					.withSkipLines(1)//
 					.build();

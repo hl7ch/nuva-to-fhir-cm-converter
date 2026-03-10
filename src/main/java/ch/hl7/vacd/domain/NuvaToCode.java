@@ -9,7 +9,7 @@ import com.opencsv.bean.CsvBindByPosition;
  * This class represents the mapping between Nuva codes and Swissmedic codes as defined in the CSV file
  * see {@link chttps://github.com/IVC-NUVA/NUVA#nuva2codecsv}
  */
-public class NuvaToSwissmedic {
+public class NuvaToCode {
 	/** the NUVA concept code */
 	@CsvBindByPosition(position = 0)
 	private String nuvaCode;
@@ -43,7 +43,7 @@ public class NuvaToSwissmedic {
 	private int equivalence;
 
 	/** Default constructor */
-	public NuvaToSwissmedic() {
+	public NuvaToCode() {
 
 	}
 
@@ -59,7 +59,7 @@ public class NuvaToSwissmedic {
 	 * @param equivalence the equivalence level of the mapping
 	 * 
 	 */
-	public NuvaToSwissmedic(String nuvaCode, String nuvaLabel, String code, String codeLabel, boolean best, int blur,
+	public NuvaToCode(String nuvaCode, String nuvaLabel, String code, String codeLabel, boolean best, int blur,
 			int equivalence) {
 		super();
 		this.nuvaCode = nuvaCode;

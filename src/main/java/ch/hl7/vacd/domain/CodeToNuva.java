@@ -9,7 +9,7 @@ import com.opencsv.bean.CsvBindByPosition;
  * Class representing the mapping from Swissmedic codes to Nuva codes. This class is used to parse the CSV file containing the mappings and to store the data in a structured way.
  * see {@link https://github.com/IVC-NUVA/NUVA?tab=readme-ov-file#code2nuvacsv}
  */
-public class SwissmedicToNuva {
+public class CodeToNuva {
 	/** the code in the aligned code system */
 	@CsvBindByPosition(position = 0)
 	private String code;
@@ -23,7 +23,7 @@ public class SwissmedicToNuva {
 	private String nuvaLabel;
 
 	/** Default constructor */
-	public SwissmedicToNuva() {
+	public CodeToNuva() {
 
 	}
 
@@ -34,7 +34,7 @@ public class SwissmedicToNuva {
 	 * @param nuvaCode  the corresponding Nuva code
 	 * @param nuvaLabel the label for the Nuva code
 	 */
-	public SwissmedicToNuva(String code, String nuvaCode, String nuvaLabel) {
+	public CodeToNuva(String code, String nuvaCode, String nuvaLabel) {
 		super();
 		this.code = code;
 		this.nuvaCode = nuvaCode;
