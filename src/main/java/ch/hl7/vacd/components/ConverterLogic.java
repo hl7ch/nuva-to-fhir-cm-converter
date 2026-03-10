@@ -5,16 +5,15 @@ package ch.hl7.vacd.components;
 
 import java.io.File;
 
+import ch.hl7.vacd.domain.MigrationItems;
+
 /**
  * 
  */
 public interface ConverterLogic {
+	void convertNuvaToCode(File destinationDir, MigrationItems item) throws Exception;
 
-	void convertNuvaToSwissmedic(File destinationFile) throws Exception;
+	void convertCodeToNuva(File destinationDir, MigrationItems item) throws Exception;
 
-	void convertSwissmedicToNuva(File destinationFile) throws Exception;
-
-	void convertNuvaToSwisslegacy(File destinationFile) throws Exception;
-
-	void convertSwisslegacyToNuva(File destinationFile) throws Exception;
+	String lookupDisplayForCode(String system, String code);
 }

@@ -1,11 +1,64 @@
-spring.application.name: nuva-to-fhir-cm-converter
-
+spring:
+  application.name: nuva-to-fhir-cm-converter
+  main.web-application-type: none
 application:
-  swissmedic:
-    base-url: https://raw.githubusercontent.com/IVC-NUVA/NUVA/refs/heads/main/Release/Alignments/SWISSMEDIC
-    tonuva: ${application.swissmedic.base-url}/SWISSMEDIC2nuva.csv
-    fromnuva: ${application.swissmedic.base-url}/nuva2SWISSMEDIC.csv
-  swisslegacy:
-    base-url: https://raw.githubusercontent.com/IVC-NUVA/NUVA/refs/heads/main/Release/Alignments/SWISSLEGACY
-    tonuva: ${application.swisslegacy.base-url}/SWISSLEGACY2nuva.csv
-    fromnuva: ${application.swisslegacy.base-url}/nuva2SWISSLEGACY.csv
+    base-url: https://raw.githubusercontent.com/IVC-NUVA/NUVA/refs/heads/main/Release/Alignments
+    nuva:
+        valueset: http://smt.esante.gouv.fr/terminologie-nuva?vs
+        codesystem: http://smt.esante.gouv.fr/terminologie-nuva
+    terminology:
+        server: https://tx-dev.raly.ch/r4
+        lookup: ${application.terminology.server}"/CodeSystem/$lookup?code=%s&system=%s"
+    migrations:
+        items:
+            - name: "SWISSMEDIC"
+              cm-definition-from:
+                  id: "ch-vacd-nuva-to-swissmedic-cm"
+                  url: "http://fhir.ch/ig/ch-vacd/ConceptMap/ch-vacd-nuva-to-swissmedic-cm"
+                  name: "NuvaToSwissmedicConceptMap"
+                  title: "ConceptMap for mapping Nuva vaccine codes to Swissmedic codes"
+                  description: "This ConceptMap maps vaccine codes from the Nuva terminology to the corresponding codes in the Swissmedic CodeSystem. It is generated based on the provided CSV mapping file and the Swissmedic CodeSystem."
+              cm-definition-to:
+                  id: "ch-vacd-swissmedic-to-nuva-cm"
+                  url: "http://fhir.ch/ig/ch-vacd/ConceptMap/ch-vacd-swissmedic-to-nuva-cm"
+                  name: "SwissmedicToNuvaConceptMap"
+                  title: "ConceptMap for mapping Swissmedic vaccine codes to Nuva codes"
+                  description: "This ConceptMap maps vaccine codes from the Swissmedic CodeSystem to the corresponding codes in the Nuva terminology. It is generated based on the provided CSV mapping file and the Swissmedic CodeSystem."
+              codesystem: http://fhir.ch/ig/ch-vacd/CodeSystem/ch-vacd-swissmedic-cs
+              valueset: http://fhir.ch/ig/ch-vacd/ValueSet/ch-vacd-swissmedic-vaccines-vs
+              tonuva: ${application.base-url}/SWISSMEDIC/SWISSMEDIC2nuva.csv
+              fromnuva: ${application.base-url}/SWISSMEDIC/nuva2SWISSMEDIC.csv
+            - name: "SWISSLEGACY"
+              cm-definition-from:
+                  id: "ch-vacd-nuva-to-swisslegacy-cm"
+                  url: "http://fhir.ch/ig/ch-vacd/ConceptMap/ch-vacd-nuva-to-swisslegacy-cm"
+                  name: "NuvaToSwisslegacyConceptMap"
+                  title: "ConceptMap for mapping Nuva vaccine codes to Old Swiss vaccine codes"
+                  description: "This ConceptMap maps vaccine codes from the Nuva terminology to the corresponding codes in the old swiss vaccines CodeSystem. It is generated based on the provided CSV mapping file and the Swissmedic CodeSystem."
+              cm-definition-to:
+                  id: "ch-vacd-swisslegacy-to-nuva-cm"
+                  url: "http://fhir.ch/ig/ch-vacd/ConceptMap/ch-vacd-swisslegacy-to-nuva-cm"
+                  name: "SwisslegacyToNuvaConceptMap"
+                  title: "ConceptMap for mapping Old Swiss vaccine codes to Nuva vaccine codes"
+                  description: "This ConceptMap maps vaccine codes from the old swiss vaccines CodeSystem to the corresponding codes in the Nuva terminology. It is generated based on the provided CSV mapping file and the Swissmedic CodeSystem."
+              codesystem: http://fhir.ch/ig/ch-vacd/CodeSystem/ch-vacd-myvaccines-cs
+              valueset: http://fhir.ch/ig/ch-vacd/ValueSet/ch-vacd-oldswiss-vaccines-vs
+              tonuva: ${application.base-url}/SWISSLEGACY/SWISSLEGACY2nuva.csv
+              fromnuva: ${application.base-url}/SWISSLEGACY/nuva2SWISSLEGACY.csv
+            - name: "SNOMED-CT"
+              cm-definition-from:
+                  id: "ch-vacd-nuva-to-snomedct-cm"
+                  url: "http://fhir.ch/ig/ch-vacd/ConceptMap/ch-vacd-nuva-to-snomedct-cm"
+                  name: "NuvaToSnomedctConceptMap"
+                  title: "ConceptMap for mapping Nuva vaccine codes to SNOMED-CT vaccine codes"
+                  description: "This ConceptMap maps vaccine codes from the Nuva terminology to the corresponding codes in the SNOMED-CT CodeSystem. It is generated based on the provided CSV mapping file and the SNOMED-CT CodeSystem."
+              cm-definition-to:
+                  id: "ch-vacd-snomedct-to-nuva-cm"
+                  url: "http://fhir.ch/ig/ch-vacd/ConceptMap/ch-vacd-snomedct-to-nuva-cm"
+                  name: "SnomedctToNuvaConceptMap"
+                  title: "ConceptMap for mapping SNOMED-CT vaccine codes to Nuva vaccine codes"
+                  description: "This ConceptMap maps vaccine codes from the SNOMED-CT CodeSystem to the corresponding codes in the Nuva terminology. It is generated based on the provided CSV mapping file and the SNOMED-CT CodeSystem."
+              codesystem: http://snomed.info/sct
+              valueset: http://fhir.ch/ig/ch-vacd/ValueSet/ch-vacd-vaccines-snomedct-vs
+              tonuva: ${application.base-url}/SNOMED-CT/SNOMED-CT2nuva.csv
+              fromnuva: ${application.base-url}/SNOMED-CT/nuva2SNOMED-CT.csv
