@@ -58,10 +58,33 @@ class ConverterLogicImplTest {
 	 * {@link ch.hl7.vacd.components.impl.ConverterLogicImpl#lookupDisplayForCode(java.lang.String, java.lang.String)}.
 	 */
 	@Test
-	void testLookupDisplayForCode() {
-		String ref = converterLogic.lookupDisplayForCode("http://snomed.info/sct", "737269009");
+	void testLookupDisplayForCode1() {
+		String ref = converterLogic.lookupDisplayForCode("http://snomed.info/sct", "428601009");
 		assertNotNull(ref);
-		assertEquals("COVID-19 (disorder)", ref);
+		assertEquals("Paratyphoid vaccine", ref);
+	}
+	
+	/**
+	 * Test method for
+	 * {@link ch.hl7.vacd.components.impl.ConverterLogicImpl#lookupDisplayForCode(java.lang.String, java.lang.String)}.
+	 */
+	@Test
+	void testLookupDisplayForCode2() {
+		String ref = converterLogic.lookupDisplayForCode("http://fhir.ch/ig/ch-vacd/CodeSystem/ch-vacd-myvaccines-cs", "39");
+		assertNotNull(ref);
+		assertEquals("Infanrix Penta", ref);
+	}
+	
+
+	/**
+	 * Test method for
+	 * {@link ch.hl7.vacd.components.impl.ConverterLogicImpl#lookupDisplayForCode(java.lang.String, java.lang.String)}.
+	 */
+	@Test
+	void testLookupDisplayForCode3() {
+		String ref = converterLogic.lookupDisplayForCode("http://fhir.ch/ig/ch-vacd/CodeSystem/ch-vacd-swissmedic-cs", "683");
+		assertNotNull(ref);
+		assertEquals("FSME-Immun 0.25 ml Junior", ref);
 	}
 
 }
